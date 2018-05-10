@@ -95,7 +95,12 @@ void ASpatialPlusGameMode::StartPlay()
 	if (!WorkerIdOverride.IsEmpty())
 		WorkerConfiguration.SpatialOSApplication.WorkerId = WorkerIdOverride;
 
-	SpatialOS->ApplyConfiguration(WorkerConfiguration);
+	const auto CurrentWorldContext = GetGameInstance()->GetWorldContext();
+	if (CurrentWorldContext != nullptr)
+		SpatialOS->ApplyEditorWorkerConfiguration(*CurrentWorldContext);
+	else
+		SpatialOS->ApplyConfiguration(WorkerConfiguration);
+
 	SpatialOS->Connect();
 
 	GetWorldTimerManager().SetTimer(ProcessOperationsHandle, this, &ASpatialPlusGameMode::ProcessOperations, ProcessOperationsInterval, true);
