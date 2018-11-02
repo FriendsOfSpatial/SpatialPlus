@@ -5,16 +5,19 @@ public class SpatialPlus : ModuleRules
 	public SpatialPlus(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicIncludePaths.AddRange(
-			new string[] {
-				"SpatialPlus/Public"
-			});
 
-		PrivateIncludePaths.AddRange(
-			new string[] {
-				"SpatialPlus/Private",
-			});
+	    if (Target.Version.MinorVersion <= 19)
+	    {
+            PublicIncludePaths.AddRange(
+			    new string[] {
+				    "Public"
+			    });
+
+		    PrivateIncludePaths.AddRange(
+			    new string[] {
+				    "Private",
+			    });
+        }
 
 		PublicDependencyModuleNames.AddRange(
 			new string[]
