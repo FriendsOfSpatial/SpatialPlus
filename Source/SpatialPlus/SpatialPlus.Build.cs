@@ -31,14 +31,7 @@ public class SpatialPlus : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"Slate",
-				"SlateCore",
-
-                "SpatialOS"
-			});
-
-		DynamicallyLoadedModuleNames.AddRange(
-			new string[]
-			{
+				"SlateCore"
 			});
 	}
 }
